@@ -1,10 +1,11 @@
 package com.gmail.eamosse.idbdata.datasources
 
+import com.gmail.eamosse.idbdata.api.response.CategoryResponse
 import com.gmail.eamosse.idbdata.api.response.TokenResponse
-import com.gmail.eamosse.idbdata.api.response.toToken
 import com.gmail.eamosse.idbdata.api.service.MovieService
-import com.gmail.eamosse.idbdata.data.Token
 import com.gmail.eamosse.idbdata.utils.Result
+import com.gmail.eamosse.idbdata.utils.parse
+import com.gmail.eamosse.idbdata.utils.safeCall
 
 /**
  * Manipule les données de l'application en utilisant un web service
@@ -20,24 +21,22 @@ internal class OnlineDataSource(private val service: MovieService) {
      * Sinon, une erreur est survenue
      */
     suspend fun getToken(): Result<TokenResponse> {
-        return try {
+        return safeCall {
             val response = service.getToken()
-            if (response.isSuccessful) {
-                Result.Succes(response.body()!!)
-            } else {
-                Result.Error(
-                    exception = Exception(),
-                    message = response.message(),
-                    code = response.code()
-                )
+            response.parse()
+        }
+    }
+
+    suspend fun getCategories(): Result<List<CategoryResponse.Genre>> {
+        return safeCall {
+            val response = service.getCategories()
+            when (val result = response.parse()) {
+                is Result.Succes -> Result.Succes(result.data.genres)
+                is Result.Error -> result
             }
-        } catch (e: Exception) {
-            Result.Error(
-                exception = e,
-                message = e.message ?: "No message",
-                code = -1
-            )
         }
     }
 }
+
+
 
