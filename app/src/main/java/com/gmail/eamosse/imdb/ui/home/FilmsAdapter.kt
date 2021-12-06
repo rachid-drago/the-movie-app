@@ -3,17 +3,30 @@ package com.gmail.eamosse.imdb.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.eamosse.idbdata.data.Category
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.gmail.eamosse.idbdata.data.Film
+import com.gmail.eamosse.imdb.R
 import com.gmail.eamosse.imdb.databinding.FilmListItemBinding
 
 class FilmsAdapter(private val items: List<Film>) :
     RecyclerView.Adapter<FilmsAdapter.ViewHolder>() {
 
+
     inner class ViewHolder(private val binding: FilmListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Film) {
             binding.item = item
+            val context = binding.filmImg
+            Glide.with(context)
+                .load(item.poster_path)
+                .apply(RequestOptions.circleCropTransform())
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_film_load)
+                .skipMemoryCache(false)
+                .into(context)
+
+
         }
     }
 
@@ -26,9 +39,7 @@ class FilmsAdapter(private val items: List<Film>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
-        val film : Film = items[position]
 
-        println("test " + film.name)
 
     }
 

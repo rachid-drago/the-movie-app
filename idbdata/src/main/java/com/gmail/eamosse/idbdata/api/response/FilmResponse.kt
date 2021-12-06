@@ -14,11 +14,15 @@ data class FilmResponse(
         val name: String,
 
         @SerializedName("overview")
-         val description: String
+         val description: String,
+
+        @SerializedName("poster_path")
+        val poster_path: String
     )
 }
 
 internal fun FilmResponse.Film.toFilm() = Film(
     name = name ,
-    description = description
+    description = description,
+    poster_path =  "https://image.tmdb.org/t/p/original" + poster_path
 )
