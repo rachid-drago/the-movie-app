@@ -1,0 +1,24 @@
+package com.gmail.eamosse.idbdata.api.response
+
+import com.gmail.eamosse.idbdata.data.Film
+import com.google.gson.annotations.SerializedName
+
+data class FilmResponse(
+    @SerializedName("results")
+    val films: List<Film>
+)
+{
+    data class Film(
+
+        @SerializedName("original_title")
+        val name: String,
+
+        @SerializedName("overview")
+         val description: String
+    )
+}
+
+internal fun FilmResponse.Film.toFilm() = Film(
+    name = name ,
+    description = description
+)

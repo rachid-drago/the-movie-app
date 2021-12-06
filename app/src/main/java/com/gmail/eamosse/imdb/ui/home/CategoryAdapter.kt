@@ -1,9 +1,12 @@
 package com.gmail.eamosse.imdb.ui.home
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.eamosse.idbdata.data.Category
+import com.gmail.eamosse.imdb.R
 
 import com.gmail.eamosse.imdb.databinding.CategoryListItemBinding
 
@@ -25,6 +28,24 @@ class CategoryAdapter(private val items: List<Category>) :
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         holder.bind(items[position])
+        val category : Category = items[position]
+        holder.itemView.setOnClickListener{
+            val appCompatActivity = it.context as AppCompatActivity
+            val homeSecondFragment = HomeSecondFragment()
+
+            val bundle = Bundle()
+            bundle.putString("cat_name", category.name.toString())
+
+            homeSecondFragment.arguments = bundle;
+            appCompatActivity.supportFragmentManager.beginTransaction()
+                .replace(R.id.container, homeSecondFragment)
+                .addToBackStack(null)
+                .commit()
+
+        }
+
+
     }
 }
