@@ -1,7 +1,9 @@
-package com.gmail.eamosse.imdb.ui.home
+package com.gmail.eamosse.imdb.ui.film
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -39,6 +41,18 @@ class FilmsAdapter(private val items: List<Film>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
+        holder.itemView.setOnClickListener{
+            val appCompatActivity = it.context as AppCompatActivity
+            val filmDetailsFragment = FilmDetailsFragment()
+            val bundle = Bundle()
+                bundle.putString("film_id", items[position].id)
+            filmDetailsFragment.arguments = bundle;
+            appCompatActivity.supportFragmentManager.beginTransaction()
+                .replace(R.id.container, filmDetailsFragment)
+                .addToBackStack(null)
+                .commit()
+
+        }
 
 
     }

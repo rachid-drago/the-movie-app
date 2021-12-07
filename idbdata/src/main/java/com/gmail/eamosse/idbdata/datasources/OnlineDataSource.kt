@@ -38,9 +38,9 @@ internal class OnlineDataSource(private val service: MovieService) {
         }
     }
 
-    suspend fun getFilms(): Result<List<FilmResponse.Film>> {
+    suspend fun getFilms(categoryId :String): Result<List<FilmResponse.Film>> {
         return safeCall {
-            val response = service.getFilms()
+            val response = service.getFilms(categoryId)
             when (val result = response.parse()) {
                 is Result.Succes -> Result.Succes(result.data.films)
                 is Result.Error -> result

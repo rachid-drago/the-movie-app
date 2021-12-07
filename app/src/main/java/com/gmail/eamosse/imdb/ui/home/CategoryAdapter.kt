@@ -8,11 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.eamosse.idbdata.data.Category
 import com.gmail.eamosse.imdb.R
-
 import com.gmail.eamosse.imdb.databinding.CategoryListItemBinding
-import android.R.color
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class CategoryAdapter(private val items: List<Category>) :
@@ -46,7 +42,7 @@ class CategoryAdapter(private val items: List<Category>) :
             val homeSecondFragment = HomeSecondFragment()
 
             val bundle = Bundle()
-            bundle.putString("cat_name", category.name.toString())
+            bundle.putString("cat_id", category.id.toString())
 
             homeSecondFragment.arguments = bundle;
             appCompatActivity.supportFragmentManager.beginTransaction()

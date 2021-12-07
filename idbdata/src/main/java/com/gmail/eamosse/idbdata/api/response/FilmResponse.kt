@@ -10,6 +10,9 @@ data class FilmResponse(
 {
     data class Film(
 
+        @SerializedName("id")
+        val id: String,
+
         @SerializedName("original_title")
         val name: String,
 
@@ -22,6 +25,7 @@ data class FilmResponse(
 }
 
 internal fun FilmResponse.Film.toFilm() = Film(
+    id = id,
     name = name ,
     description = description,
     poster_path =  "https://image.tmdb.org/t/p/original" + poster_path

@@ -32,9 +32,9 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
     val films: LiveData<List<Film>>
         get() = _films
 
-    fun getFilms() {
+    fun getFilms(categoryId : String) {
         viewModelScope.launch(Dispatchers.IO) {
-            when (val result = repository.getFilms()) {
+            when (val result = repository.getFilms(categoryId)) {
                 is Result.Succes -> {
                     _films.postValue(result.data)
 
