@@ -32,11 +32,29 @@ class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
     val films: LiveData<List<Film>>
         get() = _films
 
+    private val _film: MutableLiveData<Film> = MutableLiveData()
+    val film: LiveData<Film>
+        get() = _film
+
     fun getFilms(categoryId : String) {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = repository.getFilms(categoryId)) {
                 is Result.Succes -> {
                     _films.postValue(result.data)
+
+                }
+                is Result.Error -> {
+                    _error.postValue(result.message)
+                }
+            }
+        }
+    }
+
+    fun getFilm(filmId :Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            when (val result = repository.getFilm(filmId)) {
+                is Result.Succes -> {
+                    _film.postValue(result.data)
 
                 }
                 is Result.Error -> {
