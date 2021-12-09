@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.gmail.eamosse.idbdata.data.Film
 import com.gmail.eamosse.imdb.R
 import com.gmail.eamosse.imdb.databinding.FilmListItemBinding
+import com.gmail.eamosse.imdb.ui.home.HomeFragmentDirections
+import com.gmail.eamosse.imdb.ui.home.HomeSecondFragmentDirections
 
 class FilmsAdapter(private val items: List<Film>) :
     RecyclerView.Adapter<FilmsAdapter.ViewHolder>() {
@@ -41,6 +44,7 @@ class FilmsAdapter(private val items: List<Film>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
+        /*
         holder.itemView.setOnClickListener{
             val appCompatActivity = it.context as AppCompatActivity
             val filmDetailsFragment = FilmDetailsFragment()
@@ -51,6 +55,15 @@ class FilmsAdapter(private val items: List<Film>) :
                 .replace(R.id.container, filmDetailsFragment)
                 .addToBackStack(null)
                 .commit()
+
+        }*/
+
+        holder.itemView.setOnClickListener{
+            val action =
+                HomeSecondFragmentDirections.actionNavigationHomeSecondToNavigationFilmDetails(
+                    items[position].id,
+                )
+            Navigation.findNavController(it).navigate(action)
 
         }
 

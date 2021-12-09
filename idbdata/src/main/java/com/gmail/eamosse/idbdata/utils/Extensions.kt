@@ -29,7 +29,7 @@ internal suspend fun <T : Any> safeCall(execute: suspend () -> Result<T>): Resul
     } catch (e: Exception) {
         if (e is IOException) {
             Result.Error(
-                exception = NetworkException(),
+                exception = IOException(),
                 message = "Problème d'accès au réseau",
                 code = -1
             )
@@ -43,5 +43,5 @@ internal suspend fun <T : Any> safeCall(execute: suspend () -> Result<T>): Resul
     }
 }
 
-class NoDataException: Exception()
-class NetworkException: Exception()
+class NoDataException : Exception()
+class NetworkException : Exception()

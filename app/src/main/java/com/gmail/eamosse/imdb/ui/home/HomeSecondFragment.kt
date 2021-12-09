@@ -27,13 +27,7 @@ class HomeSecondFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeSecondBinding.inflate(inflater, container, false)
-
-        val arguments = arguments
-        if (arguments != null) {
-                //binding.text2.text = arguments.get("cat_name").toString()
-            categoryId = arguments.get("cat_id").toString()
-        }
-            return binding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +36,7 @@ class HomeSecondFragment : Fragment() {
         with(homeViewModel) {
             token.observe(viewLifecycleOwner, Observer {
                 //récupérer les films
-                getFilms(categoryId)
+                getFilms(args.categoryId)
             })
 
             films.observe(viewLifecycleOwner, Observer {

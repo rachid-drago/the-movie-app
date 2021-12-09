@@ -5,17 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.gmail.eamosse.imdb.databinding.FragmentFilmBinding
 import com.gmail.eamosse.imdb.ui.home.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
+import com.gmail.eamosse.imdb.databinding.FragmentFilmDetailsBinding
 
 
 class FilmDetailsFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
-    private lateinit var binding : FragmentFilmBinding
-    private lateinit var filmId : String
+    private lateinit var binding : FragmentFilmDetailsBinding
+    private val args: com.gmail.eamosse.imdb.ui.film.FilmDetailsFragmentArgs by navArgs()
+
 
 
 
@@ -24,12 +26,7 @@ class FilmDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentFilmBinding.inflate(inflater, container, false)
-
-        val arguments = arguments
-        if (arguments != null) {
-            filmId = arguments.get("film_id").toString()
-        }
+        binding = FragmentFilmDetailsBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -40,16 +37,17 @@ class FilmDetailsFragment : Fragment() {
         with(homeViewModel) {
             token.observe(viewLifecycleOwner, Observer {
                 //récupérer les films
-                getFilm(filmId.toInt())
-                println(getFilm(filmId.toInt()).toString())
+                 getFilm(args.filmId.toInt())
             })
 
-            films.observe(viewLifecycleOwner, Observer {
-                //binding.filmName.adapter =
+            film.observe(viewLifecycleOwner, Observer {
+                binding.filmName.text = film.value?.name
+
             })
 
             error.observe(viewLifecycleOwner, Observer {
                 //afficher l'erreur
+                println("error" + error.value)
             })
         }
     }

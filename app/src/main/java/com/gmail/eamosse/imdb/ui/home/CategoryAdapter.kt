@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.eamosse.idbdata.data.Category
 import com.gmail.eamosse.imdb.R
@@ -38,17 +40,11 @@ class CategoryAdapter(private val items: List<Category>) :
         holder.bind(items[position])
         val category : Category = items[position]
         holder.itemView.setOnClickListener{
-            val appCompatActivity = it.context as AppCompatActivity
-            val homeSecondFragment = HomeSecondFragment()
-
-            val bundle = Bundle()
-            bundle.putString("cat_id", category.id.toString())
-
-            homeSecondFragment.arguments = bundle;
-            appCompatActivity.supportFragmentManager.beginTransaction()
-                .replace(R.id.container, homeSecondFragment)
-                .addToBackStack(null)
-                .commit()
+            val action =
+                HomeFragmentDirections.actionHomeFragmentToHomeSecondFragment(
+                    category.id.toString(),
+                )
+            Navigation.findNavController(it).navigate(action)
 
         }
 
