@@ -8,10 +8,10 @@ Dans ce projet, nous allons créer l'application netFlix2 (The new Netflix). L'o
 
 
 
-![Alt text](./f1.png?raw=true "Title" )
-![Alt text](./f2.png?raw=true "Title" )
-![Alt text](./f3.png?raw=true "Title" )
-![Alt text](./t1.png?raw=true "Title" )
-![Alt text](./t2.png?raw=true "Title" )
-![Alt text](./t3.png?raw=true "Title" )
-![Alt text](./a1.png?raw=true "Title" )
+![Alt text](./f1.PNG?raw=true "Title" )
+![Alt text](./f2.PNG?raw=true "Title" )
+![Alt text](./f3.PNG?raw=true "Title" )
+![Alt text](./t1.PNG?raw=true "Title" )
+![Alt text](./t2.PNG?raw=true "Title" )
+![Alt text](./t3.PNG?raw=true "Title" )
+![Alt text](./a1.PNG?raw=true "Title" )
