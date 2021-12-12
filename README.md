@@ -4,8 +4,8 @@
 
 Membres du projet :
 
-SAIDANE Rachid
-M'hamed Lotfi
+- SAIDANE Rachid
+- M'hamed Lotfi
 
 
 
