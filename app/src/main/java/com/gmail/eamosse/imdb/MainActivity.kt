@@ -2,6 +2,7 @@ package com.gmail.eamosse.imdb
 
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -41,12 +42,22 @@ class MainActivity : AppCompatActivity() {
         //Charger les éléments principaux de la bottom bar
         val appBarConfiguration = AppBarConfiguration(
                 setOf(
-                        R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                        R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications , R.id.navigation_tv_home
                 )
         )
         //Indiquer les éléments principaux de la bottom bar
         setupActionBarWithNavController(navController, appBarConfiguration)
         //Finalement, on lie la bottom bar et la nav controller
         navView.setupWithNavController(navController)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

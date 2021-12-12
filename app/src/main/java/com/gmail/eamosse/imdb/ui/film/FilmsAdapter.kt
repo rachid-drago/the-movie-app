@@ -25,8 +25,6 @@ class FilmsAdapter(private val items: List<Film>) :
             val context = binding.filmImg
             Glide.with(context)
                 .load(item.poster_path)
-                .apply(RequestOptions.circleCropTransform())
-                .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_film_load)
                 .skipMemoryCache(false)
                 .into(context)

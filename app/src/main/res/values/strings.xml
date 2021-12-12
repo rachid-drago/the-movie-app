@@ -11,4 +11,20 @@
 
     <string name="home_second">Home Second</string>
     <string name="film_details">Film details</string>
+    <string name="welcome">Welcome</string>
+
+    <!-- TV Shows -->
+    <string name="title_tv_home">TVs shows</string>
+    <string name="title_tv">TVs shows</string>
+    <string name="title_detail_tv">TV show</string>
+
+    <string name="rest_language">en-US</string>
+    <string name="about">About</string>
+    <string name="about_data"><![CDATA[home second -> film - <category> \n\n Home -> film\n\ndashboard\n\n<picture>\n\nproject authors :\nM\'hamed LotfiSaidane Rachid\n\nabout:\nThis project is a mobile app written in kotlin. With this app, you can browse the latest movies and tv series.]]></string>
+    <string name="home_second_film_category"><![CDATA[home second -> film - <category>]]></string>
+    <string name="project_authors_n_nm_hamed_lotfi_saidane_rachid">project authors :\n\nM\'hamed Lotfi \nSaidane Rachid</string>
+    <string name="picture"><![CDATA[<picture>]]></string>
+    <string name="home_film"><![CDATA[Home -> film]]></string>
+    <string name="about_n_n_this_project_is_a_mobile_app_written_in_kotlin_with_this_app_you_can_browse_the_latest_movies_and_tv_series">about:\n\n This project is a mobile app written in kotlin. With this app, you can browse the latest movies and tv series.</string>
+    <string name="film">Film</string>
 </resources>

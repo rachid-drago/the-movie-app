@@ -4,11 +4,14 @@ import android.content.Context
 import androidx.room.Room
 import com.gmail.eamosse.idbdata.BuildConfig
 import com.gmail.eamosse.idbdata.api.service.MovieService
+import com.gmail.eamosse.idbdata.api.service.TvService
 import com.gmail.eamosse.idbdata.datasources.LocalDataSource
 import com.gmail.eamosse.idbdata.datasources.OnlineDataSource
+import com.gmail.eamosse.idbdata.datasources.OnlineTvDataSource
 import com.gmail.eamosse.idbdata.local.daos.TokenDao
 import com.gmail.eamosse.idbdata.local.databases.IdbDataBase
 import com.gmail.eamosse.idbdata.repository.MovieRepository
+import com.gmail.eamosse.idbdata.repository.TvRepository
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -36,6 +39,15 @@ val dataModule = module {
     }
 
     single {
+        Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(get(named("BASE_URL")) as String)
+            .client(get())
+            .build()
+            .create(TvService::class.java)
+    }
+
+    single {
         LocalDataSource()
     }
 
@@ -44,7 +56,16 @@ val dataModule = module {
     }
 
     single {
+        OnlineTvDataSource(get())
+    }
+
+    single {
         MovieRepository()
+    }
+
+
+    single {
+        TvRepository()
     }
 
     single {

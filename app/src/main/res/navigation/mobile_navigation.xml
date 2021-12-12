@@ -13,6 +13,9 @@
         <argument
             android:name="myArg"
             app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
         <action
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
             app:destination="@id/navigation_home_second" />
@@ -30,6 +33,9 @@
 
         <argument
             android:name="categoryId"
+            app:argType="string" />
+        <argument
+            android:name="name"
             app:argType="string" />
         <action
             android:id="@+id/action_navigation_home_second_to_navigation_film_details"
@@ -58,4 +64,42 @@
         android:name="com.gmail.eamosse.imdb.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_tv_home"
+        android:name="com.gmail.eamosse.imdb.ui.tv.fragments.TvHomeFragment"
+        android:label="@string/title_tv_home"
+        tools:layout="@layout/fragment_tv_home">
+
+        <action
+            android:id="@+id/action_TvHomeFragment_to_TvFragment"
+            app:destination="@id/tv_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tv_list"
+        android:name="com.gmail.eamosse.imdb.ui.tv.fragments.TvFragment"
+        android:label="@string/title_tv">
+        <argument
+            android:name="catId"
+            app:argType="string" />
+        <argument
+            android:name="catName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_TvFragment_to_TvFragmentDetail"
+            app:destination="@id/tv_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tv_detail"
+        android:name="com.gmail.eamosse.imdb.ui.tv.fragments.TvDetailFragment"
+        android:label="@string/title_detail_tv">
+        <argument
+            android:name="tvId"
+            app:argType="string"/>
+        <argument
+            android:name="tvName"
+            app:argType="string"/>
+    </fragment>
 </navigation>

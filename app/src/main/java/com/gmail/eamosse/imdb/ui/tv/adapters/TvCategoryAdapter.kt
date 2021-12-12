@@ -1,30 +1,21 @@
-package com.gmail.eamosse.imdb.ui.home
+package com.gmail.eamosse.imdb.ui.tv.adapters
 
-import android.graphics.Color
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.eamosse.idbdata.data.Category
-import com.gmail.eamosse.imdb.R
 import com.gmail.eamosse.imdb.databinding.CategoryListItemBinding
+import com.gmail.eamosse.imdb.ui.tv.fragments.TvHomeFragmentDirections
 
 
-class CategoryAdapter(private val items: List<Category>) :
-    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
-
-
+class TvCategoryAdapter(private val items: List<Category>) :
+    RecyclerView.Adapter<TvCategoryAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: CategoryListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
-
         fun bind(item: Category) {
             binding.item = item
-            binding.categoryImg.setColorFilter(R.color.colorPrimaryDark)
         }
     }
 
@@ -36,18 +27,14 @@ class CategoryAdapter(private val items: List<Category>) :
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         holder.bind(items[position])
-        val category : Category = items[position]
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             val action =
-                HomeFragmentDirections.actionHomeFragmentToHomeSecondFragment(
-                    category.id.toString(),
-                    category.name
+                TvHomeFragmentDirections.actionTvHomeFragmentToTvFragment(
+                    items[position].id.toString(),
+                    items[position].name
                 )
-            Navigation.findNavController(it).navigate(action)
-
+            findNavController(it).navigate(action)
         }
-
     }
 }
